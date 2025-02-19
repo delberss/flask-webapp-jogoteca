@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, url_for
 from Jogo import Jogo
 
 jogo1 = Jogo('Fifa', 'Esporte', 'PS5/XBOX')
@@ -18,7 +18,7 @@ def index():
 def novo():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         #usando o ?proxima=novo como parametro para proxima pagina
-        return redirect('/login?proxima=novo') 
+        return redirect(url_for('login', proxima=url_for('novo'))) 
     return render_template('novo.html', titulo='Novo jogo')
 
 @app.route('/criar', methods=['POST',])
@@ -28,7 +28,7 @@ def criar():
     console = request.form['console']
     jogo = Jogo(nome,categoria,console)
     lista_jogos.append(jogo)
-    return redirect('/')
+    return redirect(url_for('index')) # passa a função que instancia a pagina
 
 @app.route('/login')
 def login():
@@ -40,17 +40,17 @@ def login():
 def logout():
     session['usuario_logado'] = None
     flash('Logout efetuado com sucesso!')
-    return redirect('/')
+    return redirect(url_for('index'))
 
 
 @app.route('/autenticar', methods=['POST',])
 def autenticar():
     usuario = request.form['usuario']
     senha = request.form['senha']
-    proxima_pagina = request.form.get('proxima', '/')
+    proxima_pagina = request.form['proxima']
 
     if not proxima_pagina or proxima_pagina == "None":
-        proxima_pagina = "/"
+        proxima_pagina = url_for('index')
 
     if senha == 'admin':
         session['usuario_logado'] = usuario
@@ -58,7 +58,7 @@ def autenticar():
         return redirect(proxima_pagina)
     else:
         flash('Usuário não logado.')
-        return redirect('/login')
+        return redirect(url_for('login'))
 
 
 app.run(debug=True) #debug=True para toda vez que tiver mudança no código, Flask atualiza

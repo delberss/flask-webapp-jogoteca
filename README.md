@@ -2,25 +2,25 @@
 
 Este repositório contém o código-fonte do projeto **Jogoteca**, um aplicativo web desenvolvido em Python utilizando o microframework Flask. O projeto foi realizado através do curso **"Flask: crie uma webapp com Python"**, e tem como objetivo permitir a gestão de jogos, incluindo cadastro, listagem e login de usuários.
 
-## Funcionalidades
+## 📌 Funcionalidades
 - Listagem de jogos cadastrados.
 - Cadastro de novos jogos.
 - Autenticação de usuários.
 - Sessão de usuários com Flask.
 - Uso de mensagens flash para feedback ao usuário.
 
-## Estrutura do Projeto
+## 📁 Estrutura do Projeto
 ```
-static/
+📂static/
     bootstrap.css
 
-templates/
+📂templates/
     lista.html
     login.html
     novo.html
     template.html
 
-venv/
+📂venv/
 
 Jogo.py
 jogoteca.py
@@ -35,13 +35,13 @@ Usuario.py
 - **jogoteca.py**: Arquivo principal da aplicação Flask.
 
 ## Instalação e Execução
-1. Clone este repositório:
+1️⃣. Clone este repositório:
    ```sh
    git clone https://github.com/delberss/flask-webapp-jogoteca.git
    cd flask-webapp-jogoteca
    ```
 
-2. Crie um ambiente virtual e ative-o:
+2️⃣. Crie um ambiente virtual e ative-o:
    ```sh
    python -m venv venv
    # No Windows:
@@ -50,17 +50,18 @@ Usuario.py
    source venv/bin/activate
    ```
 
-3. Instale as dependências necessárias:
+3️⃣. Instale as dependências necessárias:
    ```sh
-   pip install flask
+   pip install flask==2.0.2
+   pip install --upgrade Flask Werkzeug
    ```
 
-4. Execute a aplicação:
+4️⃣. Execute a aplicação:
    ```sh
    python jogoteca.py
    ```
 
-5. Acesse a aplicação no navegador:
+5️⃣. Acesse a aplicação no navegador:
    ```
    http://127.0.0.1:5000
    ```
